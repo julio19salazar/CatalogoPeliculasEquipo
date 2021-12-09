@@ -1,0 +1,59 @@
+﻿@model CatalogoPeliculasEquipo.Areas.Admin.Models.PeliculasIndexViewModel
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env
+@{ ViewData["Title"] = "Agregar";
+    Layout = "_LayoutAdmin"; }
+
+<section class="botonEsquina" @*style=""*@>
+  
+    <a id="botonRegresar" href="~/Admin/Peliculas">
+        ↩
+    </a>
+</section>
+<div id="crudM">
+    <form method="post" asp-area="Admin" asp-controller="Peliculas" asp-action="Agregar" enctype="multipart/form-data">
+        <div id="crudAdm">
+            <label >Nombre:</label>
+            <input type="text" asp-for="Peliculas.Nombre" required ><br><br>
+            <label >Año:</label>
+            <input type="text" asp-for="Peliculas.Año" required><br><br>
+            <label >Categoría:</label>
+            <input type="text" asp-for="Peliculas.Categoria" required><br><br>
+            <label >Clasificación:</label>
+            <input type="text" asp-for="Peliculas.Clasificacion" required><br><br>
+            <label >País:</label>
+            <input type="text" asp-for="Peliculas.Pais" required><br><br>
+            <label >Sinopsis:</label>
+            <textarea asp-for="Peliculas.Sinopsis" required></textarea><br /><br>
+            <select required asp-for="Peliculas.Idproductor" asp-items="@(new SelectList(Model.Productores, "Id", "Nombre"))">
+                <option selected value="">Selecciona una productora</option>
+            </select><br><br>
+           
+            <h4 id="MensajeDeError"  >
+                @Html.ValidationSummary()
+            </h4>
+        </div>
+        <div id="crudImg">
+            <img id="imagePreview" src="~/imgs/nophoto2.jpg" alt="Vista previa de la imagen">
+            <input type="file" id="fileImage" name="foto" accept="image/jpeg">
+        </div>
+        <input type="submit" value="Agregar ">
+    </form>
+
+</div>
+<br class="clear" />
+
+<script>
+    function mostrarImagen(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.querySelector('#imagePreview').src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    document.querySelector("#fileImage").addEventListener("change", event => {
+        mostrarImagen(event.target)
+    });</script>

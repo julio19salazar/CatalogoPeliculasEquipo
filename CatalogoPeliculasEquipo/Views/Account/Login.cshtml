@@ -1,0 +1,80 @@
+﻿
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/estilos/font-awesome.css" rel="stylesheet">
+    <link href="~/estilos/estilos.css" rel="stylesheet" />
+    <style>
+        /* styles for validation helpers */
+        .field-validation-error {
+            color: #b94a48;
+        }
+
+        .field-validation-valid {
+            display: none;
+        }
+
+        input.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+
+
+        select.input-validation-error {
+            border: 1px solid #b94a48;
+        }
+
+        input[type="checkbox"].input-validation-error {
+            border: 0 none;
+        }
+
+        .validation-summary-errors {
+            color: #b94a48;
+        }
+
+        .validation-summary-valid {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <nav class="menuPrincipal">
+            <a>
+                <img id="logo" src="~/imgs/pirata.jpg">
+            </a>
+           
+        </nav>
+    </header>
+    <main>
+        <form  style="margin:auto; height:500PX; width:20%" method="post" action="~/Account/Login">
+            <div>
+                <h1>Iniciar Sesión</h1>
+
+                <label style="color:white;font-size:15px">Usuario:</label>
+                <input type="text" required name="username" /><br /><br />
+
+
+                <label style="color:white;font-size:15px">Contraseña:</label>
+                <input type="password" required name="password" /><br /><br />
+
+                <div class="botones">
+                    <p>
+                        @Html.ValidationSummary()
+                    </p><br />
+                    <input style="background-color:transparent;width:200px;color:white; border:solid 1px white" type="submit" value="Entrar" />
+                </div>
+            </div>
+        </form>
+    </main>
+    <footer class="pie">
+        <div class="infoPie">
+            <p>Todos los derechos reservados por Julio salazar y Daniel villa real ☑️</p>
+        </div>
+    </footer>
+</body>
+</html>

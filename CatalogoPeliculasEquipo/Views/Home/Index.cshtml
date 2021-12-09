@@ -1,0 +1,21 @@
+﻿@model IEnumerable<CatalogoPeliculasEquipo.Models.Pelicula>
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env
+@{ Layout = "_Layout"; }
+
+<h1 id="estrenos" >Ultimos estrenos📽</h1>
+<div id="pelis">
+    @foreach (var p in Model)
+    {
+<div class="infoPeliConFoto" >
+    <a class="imgPelicula" href="~/pelicula/@p.Nombre.Replace(" ","-").ToLower()">
+        @if (System.IO.File.Exists($"{env.WebRootPath}/imgs_peliculas/{p.Id}_peli.jpg"))
+        {
+    <img src="~/imgs_peliculas/@(p.Id)_peli.jpg" alt="@p.Nombre"> }
+else
+{
+    <img src="~/imgs/nophoto2.jpg" alt="@p.Nombre">}
+      
+    </a>
+        <p>@p.Nombre</p>
+</div>}
+</div>

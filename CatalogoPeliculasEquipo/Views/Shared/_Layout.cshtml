@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "_Layout";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/estilos/font-awesome.css" rel="stylesheet">
+    <link href="~/estilos/estilos.css" rel="stylesheet" />
+    <title>MovieStart⭐</title>
+
+</head>
+
+<body class="index">
+    
+    <header>
+        
+        <nav class="menuPrincipal">
+            <a href="/">
+                <img id="logo" src="~/imgs/pirata.jpg">
+            </a>
+            <ul>
+                <li>
+                    <a href="/">Página principal</a>
+                </li>
+                <li>
+                    <a href="~/acercade">👀  Acerca de MovieStar</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer class="pie">
+        <div class="infoPie">
+            <p>Todos los derechos reservados por Julio salazar y Daniel villa real ☑️</p>
+        </div>
+    </footer>
+</body>
+</html>

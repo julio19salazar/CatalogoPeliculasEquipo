@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CatalogoPeliculasEquipo.Models.Pelicula>
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env
+@{
+    ViewData["Title"] = "Index";
+    Layout = "_LayoutAdmin";
+}
+<section class="areadeAgregar">
+    @*<h1 style="display: block; position: absolute; font-size: 30px; padding: 0; margin: 0;">Administrar las peliculas </h1>*@
+    @if (User.IsInRole("Administrador"))
+    {
+        <a id="botonAgregar" href="~/Admin/Peliculas/Agregar">
+            Añadir ➕
+        </a>}
+
+</section>
+<div id="pelis">
+    @foreach (var p in Model)
+    {
+    <div class="infoPeliConFoto">
+        <a class="imgPelicula" @*href="~/pelicula/@p.Nombre.Replace(" ","-").ToLower()"*@>
+            @if (System.IO.File.Exists($"{env.WebRootPath}/imgs_peliculas/{p.Id}_peli.jpg"))
+            {
+                <img src="~/imgs_peliculas/@(p.Id)_peli.jpg" alt="@p.Nombre"> }
+            else
+            {
+                <img src="~/imgs/nophoto2.jpg" alt="@p.Nombre">}
+
+        </a>
+        <p>@p.Nombre</p>
+        <div class="botones">
+            <a href="~/Admin/Peliculas/Modificar/@(p.Id)" class="btnEditar">✏️ Editar</a>
+            <a href="~/Admin/Peliculas/Eliminar/@(p.Id)" class="btnBorrar">🗑️Eliminar</a>
+        </div>
+    </div>}
+</div>

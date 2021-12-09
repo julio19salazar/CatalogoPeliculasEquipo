@@ -1,0 +1,34 @@
+﻿@model CatalogoPeliculasEquipo.Models.Pelicula
+@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env
+@{ Layout = "_Layout"; }
+<div id="principalVer">
+    <div class="datosPelicula">
+        <h1>Titulo: <b>@Model.Nombre</b></h1>
+        @if (System.IO.File.Exists($"{env.WebRootPath}/imgs_peliculas/{Model.Id}_peli.jpg"))
+        {
+<img id="a" style="color:white" src="~/imgs_peliculas/@(Model.Id)_peli.jpg" alt="@(Model.Nombre)"> }
+else
+{
+<img id="b" src="~/imgs/nophoto2.jpg" alt="@(Model.Nombre)">}
+        <h2>
+            Lanzada el año: <b>@(Model.Año)</b>
+        </h2>
+        <h2>Categoría: <b>@(Model.Categoria)</b></h2>
+        <h2>País: <b>@(Model.Pais)</b></h2>
+        <p>@Model.Sinopsis</p>
+
+        <h2>Productora: <b>@Model.IdproductorNavigation.Nombre</b></h2>
+        <a>
+
+            @if (System.IO.File.Exists($"{env.WebRootPath}/imgs_productoras/{Model.IdproductorNavigation.Id}_p.png"))
+            {
+<img id="c" style="width:200px" src="~/imgs_productoras/@(Model.IdproductorNavigation.Id)_p.png" alt="@(Model.IdproductorNavigation.Nombre)"> }
+else
+{
+<img id="d" src="~/imgs/nophoto2.jpg" alt="@(Model.IdproductorNavigation.Nombre)">}
+        </a>
+    </div>
+</div>
+
+
